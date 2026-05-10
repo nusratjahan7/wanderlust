@@ -43,13 +43,11 @@ const DestinationCard = ({ destination }) => {
     _id,
     destinationName,
     country,
-    category,
     price,
     duration,
     imageUrl,
     rating = 4.5,
   } = destination;
-
 
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 group">
