@@ -9,6 +9,7 @@ const navLinks = [
   { label: "Destinations", path: "/destinations" },
   { label: "My Bookings", path: "/my-bookings" },
   { label: "Admin", path: "/admin" },
+  { label: "Add Destination", path: "/add-destinations" },
 ];
 
 const Navbar = () => {
