@@ -18,7 +18,7 @@ const Destination = async () => {
                 Showing {destinations.length} destination{destinations.length !== 1 ? "s" : ""}
             </p>
 
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                 {
                     destinations.map(destination =>
                         <DestinationCard key={destination._id} destination={destination} />)
