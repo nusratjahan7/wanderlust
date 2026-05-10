@@ -1,8 +1,11 @@
 import { getDestinationById } from '@/lib/data';
 import Link from 'next/link';
-import { FiArrowLeft, FiEdit2, FiX, FiMapPin, FiClock, FiArrowRight, FiCheck, FiCalendar } from 'react-icons/fi';
+import { FiArrowLeft, FiEdit2, FiMapPin, FiClock, FiArrowRight, FiCheck, FiCalendar } from 'react-icons/fi';
 import { FaStar } from 'react-icons/fa';
 import Image from 'next/image';
+import { Button } from '@heroui/react';
+import { RiDeleteBinLine } from 'react-icons/ri';
+import EditModal from '@/Components/EditModal';
 
 const DestinationDetailsPage = async ({ params }) => {
     const { id } = await params;
@@ -52,18 +55,14 @@ const DestinationDetailsPage = async ({ params }) => {
                 </Link>
 
                 <div className="flex items-center gap-2">
-                    <Link
-                        href={`/destinations/${id}/edit`}
-                        className="flex items-center gap-1.5 text-sm border border-gray-300 px-3 py-1.5 rounded hover:bg-gray-50 transition-colors"
-                    >
-                        <FiEdit2 className="w-4 h-4" />
-                        Edit
-                    </Link>
+                    
+                    <EditModal destination={destination} />
+                    
                     <Link href={'/destinations'}>
-                        <button className="flex items-center gap-1.5 text-sm border border-red-300 text-red-600 px-3 py-1.5 rounded hover:bg-red-50 transition-colors">
-                            <FiX className="w-4 h-4" />
+                        <Button className="flex items-center gap-1.5 text-sm border border-red-300 text-red-600 px-3 py-1.5 rounded hover:bg-red-50 transition-colors bg-white">
+                            <RiDeleteBinLine className="w-4 h-4" />
                             Cancel
-                        </button>
+                        </Button>
                     </Link>
                 </div>
             </div>
