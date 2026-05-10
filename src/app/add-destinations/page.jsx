@@ -1,23 +1,9 @@
-'use client'
+import { addDestination } from '@/lib/action';
 import { Button, FieldError, Input, Label, TextField, Select, ListBox, TextArea } from '@heroui/react';
-import React from 'react';
+
 
 const AddDestination =  () => {
-    const onSubmit = async (e) => {
-        e.preventDefault()
-        const formData = new FormData(e.currentTarget);
-        const destination = Object.fromEntries(formData.entries());
-        
-       const res = await fetch('http://localhost:5000/destination', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(destination)
-        })
-        const data = await res.json();
-
-    }
+  
     return (
         <div className='w-11/12 mx-auto my-9'>
             <div>
@@ -25,7 +11,7 @@ const AddDestination =  () => {
             </div>
             
             <div className='max-w-2xl mx-auto mt-9 border shadow-xl'>
-                <form onSubmit={onSubmit}
+                <form action={addDestination}
                 className="p-10 space-y-8"
             >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

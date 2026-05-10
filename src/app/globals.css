@@ -1,3 +1,6 @@
 @import "tailwindcss";
 @import "@heroui/styles"; 
 
+:root {
+  --text2: #6C696D;
+}
