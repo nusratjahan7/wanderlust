@@ -23,14 +23,14 @@ const SignupPage = () => {
             password: user.password,
             confirmPassword: user.confirmPassword,
             name: user.name,
+            image: user.image,
             callbackURL: "/login"
-
         })
 
         if (data) {
             setTimeout(() => {
                 toast.success("Account created successfully!");
-            }, 2000);
+            }, 800);
             router.push("/login");
         }
 
@@ -76,6 +76,14 @@ const SignupPage = () => {
                         >
                             <Label className="font-semibold">Email</Label>
                             <Input placeholder="Enter your email" />
+                            <FieldError />
+                        </TextField>
+
+                        <TextField
+                            name="image"
+                        >
+                            <Label className="font-semibold">Image URL</Label>
+                            <Input placeholder="Enter your image url" />
                             <FieldError />
                         </TextField>
 

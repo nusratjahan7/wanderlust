@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
+import { Avatar } from "@heroui/react";
 
 
 const navLinks = [
@@ -63,22 +64,14 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center gap-4">
             <div></div>
             <div></div>
-            <div></div>
             <Link href="/profile" className="flex items-center gap-1.5 text-sm font-medium text-gray-700 px-3 py-1.5 rounded-md hover:bg-blue-50 hover:text-[#1aa0c8] transition-colors duration-150 whitespace-nowrap">
-              <svg
-                className="w-4 h-4"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
               Profile
+              <Avatar>
+                <Avatar.Image alt={user.name} src={user?.image} />
+                <Avatar.Fallback className="bg-white/40 text-[#1aa0c8] font-bold">{user.name.charAt(0).toUpperCase()}</Avatar.Fallback>
+              </Avatar>
             </Link>
+
             <button
               onClick={async () => {
                 await authClient.signOut();
@@ -176,20 +169,13 @@ const Navbar = () => {
             // user IS logged in → show Logout
             <div className="flex flex-col gap-4">
               <Link href="/profile" className="flex items-center gap-1.5 text-sm font-medium text-gray-700 px-3 py-1.5 rounded-md hover:bg-blue-50 hover:text-[#1aa0c8] transition-colors duration-150 whitespace-nowrap">
-                <svg
-                  className="w-4 h-4"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                  <circle cx="12" cy="7" r="4" />
-                </svg>
+                <Avatar>
+                  <Avatar.Image alt={user.name} src={user?.image} />
+                  <Avatar.Fallback className="bg-white/40 text-[#1aa0c8] font-bold">{user.name.charAt(0).toUpperCase()}</Avatar.Fallback>
+                </Avatar>
                 Profile
               </Link>
+
               <button
                 onClick={async () => {
                   await authClient.signOut();
