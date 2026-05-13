@@ -1,11 +1,10 @@
 import { getDestinationById } from '@/lib/data';
 import Link from 'next/link';
-import { FiArrowLeft, FiEdit2, FiMapPin, FiClock, FiArrowRight, FiCheck, FiCalendar } from 'react-icons/fi';
+import { FiArrowLeft,  FiMapPin, FiClock, FiArrowRight, FiCheck, FiCalendar } from 'react-icons/fi';
 import { FaStar } from 'react-icons/fa';
 import Image from 'next/image';
-import { Button } from '@heroui/react';
-import { RiDeleteBinLine } from 'react-icons/ri';
 import EditModal from '@/Components/EditModal';
+import DeleteAlert from '@/Components/DeleteAlert';
 
 const DestinationDetailsPage = async ({ params }) => {
     const { id } = await params;
@@ -58,12 +57,9 @@ const DestinationDetailsPage = async ({ params }) => {
                     
                     <EditModal destination={destination} />
                     
-                    <Link href={'/destinations'}>
-                        <Button className="flex items-center gap-1.5 text-sm border border-red-300 text-red-600 px-3 py-1.5 rounded hover:bg-red-50 transition-colors bg-white">
-                            <RiDeleteBinLine className="w-4 h-4" />
-                            Cancel
-                        </Button>
-                    </Link>
+                    
+                      <DeleteAlert destination={destination} />
+                   
                 </div>
             </div>
 
