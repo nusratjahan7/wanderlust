@@ -2,8 +2,10 @@
 import { authClient } from "@/lib/auth-client";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
 import { Button, Card, FieldError, Form, Input, InputGroup, Label, TextField } from "@heroui/react";
+import Link from "next/link";
 import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
+import { FcGoogle } from "react-icons/fc";
 import { toast } from "sonner";
 
 
@@ -38,8 +40,13 @@ const SignupPage = () => {
             toast.error(error.message || "Something went wrong. Please try again.");
             return;
         }
-
     };
+
+    const handleGoogleSignIn = async () => {
+        await authClient.signIn.social({
+            provider: "google",
+        })
+    }
     return (
         <div className="flex items-center justify-center my-10">
             <div>
@@ -169,6 +176,17 @@ const SignupPage = () => {
 
                         </div>
                     </Form>
+                    <div className="divider text-(--text2) h-0.5">Or sign up with</div>
+                    <div className="flex flex-col items-center justify-center gap-2">
+                        <button onClick={handleGoogleSignIn} className="btn w-full bg-white text-black border-[#e5e5e5]">
+                            <FcGoogle className="h-4 w-4" />
+                            Sign up with Google
+                        </button>
+                        <div className="flex gap-1">
+                            <p className="text-sm text-(--text2)">Already have an account?</p>
+                            <Link href={'/login'} className="text-(--brand) font-bold">Sign In</Link>
+                        </div>
+                    </div>
                 </Card>
             </div>
         </div >
