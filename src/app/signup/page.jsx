@@ -2,7 +2,7 @@
 import { authClient } from "@/lib/auth-client";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
 import { Button, Card, FieldError, Form, Input, InputGroup, Label, TextField } from "@heroui/react";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -10,6 +10,7 @@ import { toast } from "sonner";
 const SignupPage = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [passwordValue, setPasswordValue] = useState("");
+    const router = useRouter();
 
 
     const onSubmit = async (e) => {
@@ -27,8 +28,10 @@ const SignupPage = () => {
         })
 
         if (data) {
-            toast.success("Account created successfully!");
-            redirect("/login");
+            setTimeout(() => {
+                toast.success("Account created successfully!");
+            }, 2000);
+            router.push("/login");
         }
 
         if (error) {

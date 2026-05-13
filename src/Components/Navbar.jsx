@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
-import { CgProfile } from "react-icons/cg";
+
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -57,12 +57,26 @@ const Navbar = () => {
 
         {/* ── Right: Auth Links (desktop) ── */}
         {isPending ? (
-          <span className="loading loading-dots loading-sm"></span>
+          <span className="loading loading-dots loading-sm hidden lg:block text-(--brand)"></span>
         ) : user ? (
           // user IS logged in → show Logout
           <div className="hidden lg:flex items-center gap-4">
+            <div></div>
+            <div></div>
+            <div></div>
             <Link href="/profile" className="flex items-center gap-1.5 text-sm font-medium text-gray-700 px-3 py-1.5 rounded-md hover:bg-blue-50 hover:text-[#1aa0c8] transition-colors duration-150 whitespace-nowrap">
-              <CgProfile className="h-4 w-4" />
+              <svg
+                className="w-4 h-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
               Profile
             </Link>
             <button
@@ -80,9 +94,23 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center gap-1">
             <Link href="/profile" className="flex items-center gap-1.5 text-sm font-medium text-gray-700 px-3 py-1.5 rounded-md hover:bg-blue-50 hover:text-[#1aa0c8] transition-colors duration-150 whitespace-nowrap">
 
+              <svg
+                className="w-4 h-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+
               Profile
             </Link>
             <Link href="/login" className="text-sm font-medium text-gray-700 px-3 py-1.5 rounded-md hover:bg-blue-50 hover:text-[#1aa0c8] transition-colors duration-150">
+
               Login
             </Link>
             <Link href="/signup" className="text-sm font-medium text-white bg-[#1aa0c8] px-4 py-1.5 rounded-lg hover:bg-[#1590b5] transition-all duration-150 hover:-translate-y-px">
@@ -143,12 +171,23 @@ const Navbar = () => {
 
 
           {isPending ? (
-            <span className="loading loading-dots loading-sm"></span>
+            <span className="loading loading-dots loading-sm text-(--brand)"></span>
           ) : user ? (
             // user IS logged in → show Logout
             <div className="flex flex-col gap-4">
               <Link href="/profile" className="flex items-center gap-1.5 text-sm font-medium text-gray-700 px-3 py-1.5 rounded-md hover:bg-blue-50 hover:text-[#1aa0c8] transition-colors duration-150 whitespace-nowrap">
-                <CgProfile className="h-4 w-4" />
+                <svg
+                  className="w-4 h-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
                 Profile
               </Link>
               <button
