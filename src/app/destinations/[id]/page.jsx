@@ -1,6 +1,6 @@
 import { getDestinationById } from '@/lib/data';
 import Link from 'next/link';
-import { FiArrowLeft, FiMapPin, FiClock, FiArrowRight, FiCheck, FiCalendar } from 'react-icons/fi';
+import { FiArrowLeft, FiMapPin, FiClock, FiCheck } from 'react-icons/fi';
 import { FaStar } from 'react-icons/fa';
 import Image from 'next/image';
 import EditModal from '@/Components/EditModal';
