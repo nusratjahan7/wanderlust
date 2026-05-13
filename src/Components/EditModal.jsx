@@ -40,10 +40,10 @@ const EditModal = ({ destination }) => {
 
     // };
 
-     const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        
+
         startTransition(async () => {
             await updateDestination(_id, formData);
         });
@@ -211,7 +211,7 @@ const EditModal = ({ destination }) => {
                                         <Button slot="close" variant="outline" className="text-red-600 border border-red-600">
                                             <RxCross2 />  Cancel
                                         </Button>
-                                        <Button type="submit" slot="close" disabled={isPending}>
+                                        <Button className="bg-(--brand)" type="submit" slot="close" disabled={isPending}>
                                             <LuSave />  {isPending ? 'Saving...' : 'Save Changes'}
                                         </Button>
                                     </Modal.Footer>

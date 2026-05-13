@@ -1,7 +1,8 @@
 'use client'
 import { authClient } from '@/lib/auth-client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FiArrowRight, FiCalendar, FiCheck } from 'react-icons/fi';
+import { toast } from 'sonner';
 
 const BookingCard = ({ formattedDate, numericPrice, destination }) => {
     const { _id, destinationName, price, imageUrl, country } = destination;
@@ -10,12 +11,23 @@ const BookingCard = ({ formattedDate, numericPrice, destination }) => {
 
     const [booked, setBooked] = useState(false);
 
+    useEffect(() => {
+        if (!user?.id) return;
+
+        fetch(`http://localhost:5000/booking/${user.id}`)
+            .then(res => res.json())
+            .then(data => {
+                const alreadyBooked = data.some(b => b.destinationId === _id);
+                if (alreadyBooked) setBooked(true);
+            })
+    }, [user?.id, _id]);
+
     const handleBooking = async () => {
         const bookingData = {
-            userId: user.id,
-            userImage: user.image,
-            userName: user.name,
-            userEmail: user.email,
+            userId: user?.id,
+            userImage: user?.image,
+            userName: user?.name,
+            userEmail: user?.email,
             destinationId: _id,
             destinationName,
             price,
@@ -23,7 +35,6 @@ const BookingCard = ({ formattedDate, numericPrice, destination }) => {
             formattedDate,
             country
         }
-
         const res = await fetch('http://localhost:5000/booking', {
             method: "POST",
             headers: {
@@ -32,8 +43,12 @@ const BookingCard = ({ formattedDate, numericPrice, destination }) => {
             body: JSON.stringify(bookingData)
         })
         const data = await res.json();
-        console.log(data);
-        setBooked(true);
+
+        if (data.insertedId) {
+            setBooked(true);
+            toast.success('Booked Successfully');
+        }
+
     }
 
 
