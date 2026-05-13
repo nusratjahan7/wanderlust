@@ -1,7 +1,42 @@
-
+'use client'
+import { authClient } from '@/lib/auth-client';
+import { useState } from 'react';
 import { FiArrowRight, FiCalendar, FiCheck } from 'react-icons/fi';
 
 const BookingCard = ({ formattedDate, numericPrice, destination }) => {
+    const { _id, destinationName, price, imageUrl, country } = destination;
+    const { data: session } = authClient.useSession();
+    const user = session?.user;
+
+    const [booked, setBooked] = useState(false);
+
+    const handleBooking = async () => {
+        const bookingData = {
+            userId: user.id,
+            userImage: user.image,
+            userName: user.name,
+            userEmail: user.email,
+            destinationId: _id,
+            destinationName,
+            price,
+            imageUrl,
+            formattedDate,
+            country
+        }
+
+        const res = await fetch('http://localhost:5000/booking', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(bookingData)
+        })
+        const data = await res.json();
+        console.log(data);
+        setBooked(true);
+    }
+
+
     return (
         <div className="w-full md:w-72 shrink-0">
             <div className="border border-gray-200 rounded-xl p-5 shadow-sm sticky top-6">
@@ -18,9 +53,17 @@ const BookingCard = ({ formattedDate, numericPrice, destination }) => {
                 </div>
 
                 {/* Book Now Button */}
-                <button className="w-full bg-cyan-500 hover:bg-cyan-600 transition-colors text-white text-sm font-medium py-2.5 rounded-lg flex items-center justify-center gap-2">
-                    Book Now
-                    <FiArrowRight className="w-4 h-4" />
+                <button
+                    onClick={handleBooking}
+                    disabled={booked}
+                    className={`w-full transition-colors text-white text-sm font-medium py-2.5 rounded-lg flex items-center justify-center gap-2
+                        ${booked
+                            ? "bg-gray-400! cursor-not-allowed"
+                            : "bg-cyan-500 hover:bg-cyan-600 cursor-pointer"
+                        }`}
+                >
+                    {booked ? "Booked" : "Book Now"}
+                    {!booked && <FiArrowRight className="w-4 h-4" />}
                 </button>
 
                 {/* Trust Badges */}
