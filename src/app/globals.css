@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
-@import "@heroui/styles"; 
+@import "@heroui/styles";
+@plugin "daisyui";
 
 :root {
   --text2: #6C696D;
+  --brand: #1aa0c8;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
 }
