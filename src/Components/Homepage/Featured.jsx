@@ -1,11 +1,12 @@
 import { FiArrowRight } from "react-icons/fi";
 import DestinationCard from "./DestinationCard";
 import Link from "next/link";
-import FeaturedCarouselNav from "./FeaturedCarouselNav";
 
 const Featured = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/featured`);
+    if (!res.ok) return null;
     const destinations = await res.json();
+    if (!destinations?.length) return null;
 
     return (
         <section className="py-12 px-6 md:px-16">
@@ -31,7 +32,6 @@ const Featured = async () => {
             <div
                 id="featured-carousel"
                 className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2"
-                style={{ scrollbarWidth: "none" }}
             >
                 {destinations.map((destination) => (
                     <div
@@ -43,8 +43,6 @@ const Featured = async () => {
                 ))}
             </div>
 
-            {/* Nav */}
-            <FeaturedCarouselNav total={destinations.length} />
         </section>
     );
 };
