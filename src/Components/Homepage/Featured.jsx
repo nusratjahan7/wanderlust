@@ -7,7 +7,6 @@ const Featured = async () => {
     if (!res.ok) return null;
     const destinations = await res.json();
     if (!destinations?.length) return null;
-
     return (
         <section className="py-12 px-6 md:px-16">
             {/* Header */}
