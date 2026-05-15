@@ -6,10 +6,16 @@ import Image from 'next/image';
 import EditModal from '@/Components/EditModal';
 import DeleteAlert from '@/Components/DeleteAlert';
 import BookingCard from '@/Components/Destinations/BookingCard';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
 
 const DestinationDetailsPage = async ({ params }) => {
     const { id } = await params;
-    const destination = await getDestinationById(id);
+    const token = await auth.api.getToken({
+        headers: await headers()
+    })
+    const destination = await getDestinationById(id, token?.token);
+
     const {
         destinationName,
         country,

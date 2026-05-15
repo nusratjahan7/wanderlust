@@ -1,7 +1,7 @@
-export const getDestinationById = async (id) => {
+export const getDestinationById = async (id, token) => {
     const res = await fetch(`http://localhost:5000/destination/${id}`, {
         headers: {
-            authorization: "Logged in"
+            authorization: `Bearer ${token}`
         },
         cache: 'no-store'
     });
