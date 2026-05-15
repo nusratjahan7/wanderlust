@@ -21,8 +21,23 @@ const MyBookings = async () => {
                 <h1 className="text-3xl font-bold text-gray-800 font-serif">My Bookings</h1>
                 <p className="text-(--text2) mt-1">Manage and view your upcoming travel plans</p>
             </div>
-
-            <div className="flex flex-col gap-4">
+            {bookings.length === 0 ? (
+                <div className="min-h-[380px] flex flex-col items-center justify-center text-center">
+                    <div className="w-24 h-24 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center mb-6">
+                        <FiMapPin className="w-10 h-10 text-gray-400" />
+                    </div>
+                    <h2 className="text-xl font-semibold text-gray-800 font-serif mb-2">No bookings yet</h2>
+                    <p className="text-gray-500 max-w-sm mb-6 leading-relaxed">
+                        You haven't booked any trips yet. Explore destinations and plan your next adventure!
+                    </p>
+                    <Link href="/destinations">
+                        <button className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-600 text-white text-sm font-medium transition-colors">
+                            <FiEye className="w-4 h-4" />
+                            Explore Destinations
+                        </button>
+                    </Link>
+                </div>
+            ) : (<div className="flex flex-col gap-4">
                 {bookings.map(booking => (
                     <div
                         key={booking._id}
@@ -81,6 +96,8 @@ const MyBookings = async () => {
                     </div>
                 ))}
             </div>
+
+            )}
         </div>
     );
 };
