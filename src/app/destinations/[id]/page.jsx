@@ -1,4 +1,3 @@
-import { getDestinationById } from '@/lib/data';
 import Link from 'next/link';
 import { FiArrowLeft, FiMapPin, FiClock, FiCheck } from 'react-icons/fi';
 import { FaStar } from 'react-icons/fa';
@@ -13,8 +12,17 @@ const DestinationDetailsPage = async ({ params }) => {
     const { id } = await params;
     const token = await auth.api.getToken({
         headers: await headers()
-    })
-    const destination = await getDestinationById(id, token?.token);
+    });
+    const res = await fetch(`http://localhost:5000/destination/${id}`, {
+        headers: {
+            authorization: `Bearer ${token?.token}`
+        },
+        cache: 'no-store'
+    }).catch(err => {
+        console.error("Fetch error:", err.message, err.cause);
+        throw err;
+    });
+    const destination = await res.json();
 
     const {
         destinationName,
