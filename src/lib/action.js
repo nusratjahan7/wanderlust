@@ -6,7 +6,7 @@ export const addDestination = async (formData) => {
     'use server'
     const destination = Object.fromEntries(formData.entries());
 
-    const res = await fetch('http://localhost:5000/destination', {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destination`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
@@ -22,11 +22,11 @@ export const addDestination = async (formData) => {
 
 }
 
-export const updateDestination = async ( id, formData ) => {
-    
+export const updateDestination = async (id, formData) => {
+
     const updateDestination = Object.fromEntries(formData.entries());
 
-    const res = await fetch(`http://localhost:5000/destination/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destination/${id}`, {
         method: 'PATCH',
         headers: {
             'content-type': 'application/json'

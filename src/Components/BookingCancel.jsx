@@ -6,7 +6,7 @@ import { FiXCircle } from "react-icons/fi";
 const BookingCancel = ({ bookingId, destinationName }) => {
     const handleBookingCancel = async () => {
         const { data: tokenData } = await authClient.token();
-        const res = await fetch(`http://localhost:5000/booking/${bookingId}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${bookingId}`, {
             method: "DELETE",
             headers: {
                 "content-type": "application/json",

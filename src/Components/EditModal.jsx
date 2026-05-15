@@ -23,23 +23,6 @@ const EditModal = ({ destination }) => {
 
     const [isPending, startTransition] = useTransition();
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     const formData = new FormData(e.currentTarget);
-    //     const destination = Object.fromEntries(formData.entries());
-
-    //     const res = await fetch(`http://localhost:5000/destination/${_id}`, {
-    //         method: 'PATCH',
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(destination)
-    //     })
-    //     const data = await res.json();
-    //     console.log(data);
-
-    // };
-
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);

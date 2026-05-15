@@ -14,7 +14,7 @@ const BookingCard = ({ formattedDate, numericPrice, destination }) => {
     useEffect(() => {
         if (!user?.id) return;
 
-        fetch(`http://localhost:5000/booking/${user.id}`)
+        fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${user.id}`)
             .then(res => res.json())
             .then(data => {
                 const alreadyBooked = data.some(b => b.destinationId === _id);
@@ -36,7 +36,7 @@ const BookingCard = ({ formattedDate, numericPrice, destination }) => {
             country
         }
         const { data: tokenData } = await authClient.token();
-        const res = await fetch('http://localhost:5000/booking', {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json',
