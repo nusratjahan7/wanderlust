@@ -188,10 +188,4 @@ Backend runs at: `http://localhost:5000`
 
 ---
 
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
 > Built with ❤️ using Next.js, Tailwind CSS, Express, MongoDB & Better Auth
